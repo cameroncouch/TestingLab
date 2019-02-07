@@ -42,31 +42,35 @@ class ChangeHandler {
     }
 
     giveChange() {
-        let quarters = null;
-        let dimes = null;
-        let nickels = null;
-        let pennies = null;
-        let changeBack = 100
-        for (let i = 0; i < (this.cashTendered - this.amountDue); i++) {
-            if (i % 25 === 0) {
-                quarters++;
+        let quarters = 0;
+        let dimes = 0;
+        let nickels = 0;
+        let pennies = 0;
+        let changeLeft = this.cashTendered - this.amountDue;
+        while (changeLeft > 0) {
+            if (changeLeft >= 25) {
+                changeLeft -= 25;
+                quarters++; 
             }
-            else if (i % 10 === 0) {
+            else if (changeLeft >= 10) {
+                changeLeft -= 10;
                 dimes++;
             }
-            else if (i % 5 === 0) {
+            else if (changeLeft >= 5) {
+                changeLeft -= 5;
                 nickels++;
             }
-            else if (i % 1 === 0) {
-                pennies++;
+            else if (changeLeft >= 1) {
+                changeLeft -= 1;
+                pennies++
             }
         }
-        return {
-            quarters: 0,
-            dimes: 0,
-            nickels: 0,
-            pennies: 0
-        }
-    }
+            return {
+                quarters: quarters,
+                dimes: dimes,
+                nickels: nickels,
+                pennies: pennies
+            }
+    }   
 }
 const vendingmachine = new ChangeHandler(100);

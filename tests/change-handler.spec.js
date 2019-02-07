@@ -84,7 +84,7 @@ describe("tests for change-handler", function() {
     });
 
     //Test 4a
-    it("tests to see if 32 change produces 1 quarters, 1 nickels, 2 penny", function() {
+    xit("tests to see if 32 change produces 1 quarters, 1 nickels, 2 penny", function() {
     //ARRANGE
     vendingmachine.insertCoin("quarter");
     vendingmachine.insertCoin("quarter");
@@ -95,6 +95,48 @@ describe("tests for change-handler", function() {
     vendingmachine.insertCoin("penny");
     vendingmachine.insertCoin("penny");
     //ASSERT
-    expect(vendingmachine.giveChange).toBe("quarters: 0, dimes: 0, nickels = 1, pennies = 2");
+    expect(vendingmachine.giveChange()).toEqual({quarters: 1, dimes: 0, nickels: 1, pennies: 2});
     }); 
-});
+    //Test 4b
+    xit("tests to see if 10 change produces: quarters: 0, dimes: 1, nickels: 0, pennies: 0", function(){
+    //ARRANGE
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("dime");
+    
+    //ASSERT
+    expect(vendingmachine.giveChange()).toEqual({quarters: 0, dimes: 1, nickels: 0, pennies: 0});
+   });
+   //Test 4c
+   xit("tests to see if 27 change produces: quarters: 1, dimes: 0, nickels: 0, pennies: 2", function(){
+    //ARRANGE
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("penny");
+    vendingmachine.insertCoin("penny");
+    //ASSERT
+    expect(vendingmachine.giveChange()).toEqual({quarters: 1, dimes: 0, nickels: 0, pennies: 2});
+   });
+   //Test 4d
+   it("tests to see if 68 change produces: quarters: 2, dimes: 1, nickels: 1, pennies: 3", function(){
+    //ARRANGE
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("dime");
+    vendingmachine.insertCoin("nickel");
+    vendingmachine.insertCoin("penny");
+    vendingmachine.insertCoin("penny");
+    vendingmachine.insertCoin("penny");
+    //ASSERT
+    expect(vendingmachine.giveChange()).toEqual({quarters: 2, dimes: 1, nickels: 1, pennies: 3});
+   });
+}); 
