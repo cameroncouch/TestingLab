@@ -62,16 +62,17 @@ describe("tests for change-handler", function() {
     vendingmachine.insertCoin("quarter");
     vendingmachine.insertCoin("quarter");
     vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
     //ASSERT
-    expect(vendingmachine.cashTendered).toBeGreaterThan(vendingmachine.amountDue);
+    expect(vendingmachine.isPaymentSufficient(true));
     });
 
     //Test 3b
     xit("tests if cashTendered is less than amount due", function() {
-    //ARRANGE
-    vendingmachine.insertCoin("penny");
-    //ASSERT
-    expect(vendingmachine.cashTendered).toBeLessThan(vendingmachine.amountDue);
+        vendingmachine.insertCoin("penny");
+        //ASSERT
+        expect(vendingmachine.isPaymentSufficient(false));
     });
     //Test 3c
     xit("tests to see if cashTendered is more than/equal to amount due", function() {
@@ -79,8 +80,10 @@ describe("tests for change-handler", function() {
     vendingmachine.insertCoin("quarter");
     vendingmachine.insertCoin("quarter");
     vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
+    vendingmachine.insertCoin("quarter");
     //ASSERT
-    expect(vendingmachine.cashTendered).toBeGreaterThanOrEqual(vendingmachine.amountDue);
+    expect(vendingmachine.isPaymentSufficient(true));
     });
 
     //Test 4a
@@ -123,7 +126,7 @@ describe("tests for change-handler", function() {
     expect(vendingmachine.giveChange()).toEqual({quarters: 1, dimes: 0, nickels: 0, pennies: 2});
    });
    //Test 4d
-   it("tests to see if 68 change produces: quarters: 2, dimes: 1, nickels: 1, pennies: 3", function(){
+   xit("tests to see if 68 change produces: quarters: 2, dimes: 1, nickels: 1, pennies: 3", function(){
     //ARRANGE
     vendingmachine.insertCoin("quarter");
     vendingmachine.insertCoin("quarter");
